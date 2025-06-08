@@ -56,6 +56,7 @@ int ordinalnum = -1;
 DWORD* nameRVAs = (DWORD*)((BYTE*)oh->ImageBase + exportDir->AddressOfNames);
 
 char *retAddress;
+//loop 
 for (size_t i = 0; i < exportDir->NumberOfNames; i++) {
 
     char* functionName = (char*)oh->ImageBase + nameRVAs[i];
@@ -69,6 +70,7 @@ for (size_t i = 0; i < exportDir->NumberOfNames; i++) {
 
     BYTE* func = (BYTE*)oh->ImageBase + functionRVAs[ordinalnum] + (BYTE)oh->ImageBase;
 
+    //The 4th byte is usally where the syscall number lives
     printf("syscall: \033[32m%02X\033[0m\n", func[4]);
 
     /*
